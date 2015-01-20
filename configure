@@ -511,6 +511,10 @@ else
                      echo "#define ARCH_SIXTYFOUR" >> m.h
                      set 4 4 8 2 8
                      arch64=true;;
+    mips-openwrt-linux-uclibc) inf "OpenWRT MIPS architecture."
+			       echo "#undef ARCH_SIXTYFOUR" >> m.h
+			       set 4 4 4 2 8
+			       arch64=false;;
     *) err "Since datatype sizes cannot be guessed when cross-compiling,\n" \
            "a hardcoded list is used but your architecture isn't known yet.\n" \
            "You need to determine the sizes yourself.\n" \
