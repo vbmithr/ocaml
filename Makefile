@@ -26,7 +26,7 @@ YACCFLAGS=-v
 CAMLLEX=boot/ocamlrun boot/ocamllex
 CAMLDEP=boot/ocamlrun tools/ocamldep
 DEPFLAGS=$(INCLUDES)
-CAMLRUN=byterun/ocamlrun
+CAMLRUN=boot/ocamlrun
 SHELL=/bin/sh
 MKDIR=mkdir -p
 
@@ -183,10 +183,7 @@ LIBFILES=stdlib.cma std_exit.cmo *.cmi camlheader
 
 # Start up the system from the distribution compiler
 coldstart:
-	cd byterun; $(MAKE) all
-	cp byterun/ocamlrun$(EXE) boot/ocamlrun$(EXE)
-	cd yacc; $(MAKE) all
-	cp yacc/ocamlyacc$(EXE) boot/ocamlyacc$(EXE)
+	cp `which ocamlrun` `which ocamlyacc` boot
 	cd stdlib; $(MAKE) COMPILER=../boot/ocamlc all
 	cd stdlib; cp $(LIBFILES) ../boot
 	if test -f boot/libcamlrun.a; then :; else \
